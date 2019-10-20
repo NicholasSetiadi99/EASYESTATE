@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Application Finder</title>
+  <title>Easy Estate</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -42,7 +42,7 @@ session_start();
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href=index.html class="scrollto" style="font-size:27px;" >Application Finder</a></h1>
+        <h1><a href=index.html class="scrollto" style="font-size:27px;" >Easy Estate</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="
           " /></a>-->
