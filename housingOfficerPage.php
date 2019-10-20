@@ -3,8 +3,9 @@ include_once('connection.php');
 session_start();
 $username=$_SESSION["username"];
 $query = "select staffID from housingofficer where username='{$username}'";
-$staffID = $con->query($query);
-$_SESSION['staffID'] = $staffID;
+$result = $con->query($query);
+$staffID = $result->fetch_array(MYSQLI_NUM);
+$_SESSION['staffID'] = $staffID[0];
 
 ?>
 <!DOCTYPE html>

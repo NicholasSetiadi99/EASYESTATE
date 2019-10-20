@@ -19,7 +19,7 @@
 	values ('{$residenceID}','{$address}','{$numofunits}','{$unitsize}','{$monthlyrental}','{$staffID}') ";
 
 	if ($con->query($sql) === TRUE) {
-    echo "Programme added successfuly";
+    echo "Residence added successfuly";
 	}
 	else {
     echo "Error: " . $sql . "<br>" . $con->error;
