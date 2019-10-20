@@ -1,16 +1,6 @@
 <?php
 session_start();
-include_once('connection.php');
-$search=$_POST['search'];
-if(is_null($search)){
-	$sql="select facultyName,programmeID,programmeName,description,closingDate from programme,faculty where faculty.facultyID=programme.facultyID";
-}
-else{
-	$sql="select facultyName,ProgrammeID,programmeName,description,closingDate from programme,faculty where faculty.facultyID=programme.facultyID and
-	facultyName='{$search}'";
-}
-$result=$con->query($sql);
-$attr=$result->fetch_all();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
