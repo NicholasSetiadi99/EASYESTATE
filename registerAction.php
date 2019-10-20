@@ -21,23 +21,20 @@ $con->select_db("mhs");
 // We will store the user details provided in signup page and store in user
 // table of our database
 
-$id = $_POST['anothername'];
+$user = $_POST['username'];
 $pass= $_POST['password'];
 $fullname= $_POST['fullname'];
 $em= $_POST['email'];
-$selected_val = $_POST['optradio'];
-$income = $_POST['monthlyIncome']
+$income = $_POST['monthlyIncome'];
+$randomID = uniqid();
 
 
+$sql = "INSERT INTO user(password,fullname,username) VALUES ('{$pass}','{$fullname}','{$user}');";
+$sql .= "INSERT INTO applicant(applicantID,monthlyIncome,email,username) VALUES ('A004','{$income}','{$em}','{$user}')";
 
-// create SQL query: Check the format of Insert query
-// INSERT INTO <table_name> VALUES (value1, value2, value3, ...);
-// e.g. INSERTMO INTO user VALUES ('qayoom' , '123')
-$sql = "INSERT INTO user VALUES ('{$pass}','{$fullname}','{$em}','user21')";
-
-
-if ($con->query($sql) === TRUE) {
-    echo "User added successfuly";
+// Execute multi query
+if ($con->multi_query($sql) === TRUE) {
+    echo "New records created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
@@ -46,4 +43,4 @@ $con->close();
 
 
 
- ?>
+?>
