@@ -30,7 +30,7 @@ $randomID = uniqid();
 
 
 $sql = "INSERT INTO user(password,fullname,username) VALUES ('{$pass}','{$fullname}','{$user}');";
-$sql .= "INSERT INTO applicant(applicantID,monthlyIncome,email,username) VALUES ('A004','{$income}','{$em}','{$user}')";
+$sql .= "INSERT INTO applicant(applicantID,monthlyIncome,email,username) VALUES ('{$randomID}','{$income}','{$em}','{$user}')";
 
 // Execute multi query
 if ($con->multi_query($sql) === TRUE) {
