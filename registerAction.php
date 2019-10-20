@@ -34,7 +34,7 @@ $sql .= "INSERT INTO applicant(applicantID,monthlyIncome,email,username) VALUES 
 
 // Execute multi query
 if ($con->multi_query($sql) === TRUE) {
-    echo "New records created successfully";
+    echo "New applicant is created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
