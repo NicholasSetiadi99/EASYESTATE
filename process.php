@@ -5,7 +5,7 @@
 	$password = $_POST['password'];
 
 	$_SESSION['username'] = $username;
-	$con = new mysqli("localhost", "root","","sas");
+	$con = new mysqli("localhost", "root","","mhs");
 
 	if(!$con){
 		die('Failed to query database'.mysqli_error());

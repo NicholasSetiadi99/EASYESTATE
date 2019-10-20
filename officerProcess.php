@@ -1,12 +1,12 @@
 <?php
 	session_start();
-	$_SESSION["username"] = $_POST['username'];
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
+	$_SESSION["username"] = $_POST['username'];
 
-	$con = new mysqli("localhost", "root","","sas");
+	$con = new mysqli("localhost", "root","","mhs");
 
 	if(!$con)
 		echo "cannot connect to the server";

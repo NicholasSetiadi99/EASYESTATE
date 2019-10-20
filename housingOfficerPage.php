@@ -1,5 +1,11 @@
 <?php
+include_once('connection.php');
 session_start();
+$username=$_SESSION["username"];
+$query = "select staffID from housingofficer where username='{$username}'";
+$staffID = $con->query($query);
+$_SESSION['staffID'] = $staffID;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
