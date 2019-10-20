@@ -1,6 +1,9 @@
 <?php
+include_once('connection.php');
 session_start();
-
+$sql="select residenceID ,address, numUnits, sizePerUnit ,monthlyRental, staffID from residence";
+$result=$con->query($sql);
+$attr=$result->fetch_all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,39 +79,33 @@ session_start();
         <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-		   <th>Resience ID</th>
+		   <th>Residence ID</th>
 		   <th>Address</th>
        <th>Monthly Rental</th>
 		   <th>Unit Size</th>
        <th>Available Units</th>
+       <th>Staff ID </th>
 		   <th></th>
         </tr>
         </thead>
         <tbody>
-					<tr>
-							<td>001</td>
-							<td>Damansara Height</td>
-							<td>RM 1500</td>
-							<td>80m²</td>
-							<td>26</td>
-							<td><a href='#'  type='button' class='btn btn-primary' >Apply</a></td>
-					</tr>
-					<tr>
-						<td>002</td>
-						<td>Bandar Utama</td>
-						<td>RM 1300</td>
-						<td>72m²</td>
-						<td>36</td>
-						<td><a href='#'  type='button' class='btn btn-primary' >Apply</a></td>
-					</tr>
-					<tr>
-						<td>003</td>
-						<td>TTDI</td>
-						<td>RM 1600</td>
-						<td>110m²</td>
-						<td>50</td>
-						<td><a href='#'  type='button' class='btn btn-primary' >Apply</a></td>
-					</tr>
+          <?php
+
+		  foreach($attr as $v)
+    {
+        echo"<tr>";
+
+        echo"<td>{$v[0]}</td>";
+		echo"<td>{$v[1]}</td>";
+		echo"<td>{$v[2]}</td>";
+		echo"<td>{$v[3]}</td>";
+		echo"<td>{$v[4]}</td>";
+    echo"<td>{$v[5]}</td>";
+		echo"<td><a href='apply.php?c={$v[1]}'  type='button' class='btn btn-primary' >Apply</a></td>";
+        echo"</tr>";
+    }
+
+    ?>
 
         </tbody>
         </table>
