@@ -101,7 +101,7 @@ $attr=$result->fetch_all();
 		echo"<td>{$v[3]}</td>";
 		echo"<td>{$v[4]}</td>";
     echo"<td>{$v[5]}</td>";
-		echo"<td><a href='apply.php?c={$v[1]}'  type='button' class='btn btn-primary' >Apply</a></td>";
+		echo"<td><a href='apply.php?c={$v[1]}'  type='button' class='btn btn-primary' >Allocate</a></td>";
         echo"</tr>";
     }
 
