@@ -86,7 +86,7 @@ $_SESSION['staffID'] = $staffID[0];
           <br>
 
             <a href="setupResidence.html" button type="submit" class="btn btn-primary">Set Up A New Resience</a><br><br>
-            <a href="reviewApplication.php" button type="submit" class="btn btn-primary">Review Applications</a>
+            <a href="reviewApplications.php" button type="submit" class="btn btn-primary">Review Applications</a>
             <br>
             <br>
           </form>
