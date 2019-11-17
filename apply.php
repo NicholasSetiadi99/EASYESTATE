@@ -35,7 +35,7 @@
 	else
 	{
     echo "<script>
-    alert('Application Submitted Successfully');
+    alert('Application Failed');
     window.location.href='selectPeriod.php';
     </script>";
 	}

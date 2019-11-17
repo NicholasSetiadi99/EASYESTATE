@@ -1,9 +1,14 @@
 <?php
 include_once('connection.php');
 session_start();
+$username = $_SESSION["username"];
 $sql="select residenceID, address, numUnits, sizePerUnit ,monthlyRental from residence";
 $result=$con->query($sql);
 $attr=$result->fetch_all();
+
+$sql2="select residence.residenceID, numUnits, monthlyRental, status from application, residence, applicant where applicant.applicantID=application.applicantID and residence.residenceID=application.residenceID and username = '{$username}'";
+$result2=$con->query($sql2);
+$attr2=$result2->fetch_all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,12 +77,12 @@ $attr=$result->fetch_all();
     ============================-->
     <section id="contact" class="section-bg wow fadeInUp">
       <div class="container">
-            </br>
-            </br>
+
 		<h2>Hi.<b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> Welcome to our website.</h2>
-        <h2> Available Residences </h2>
+
         <table class="table table-hover">
         <thead class="thead-dark">
+        <h2> Available Residences </h2>
         <tr>
        <th>Residence ID</th>
 		   <th>Address</th>
@@ -105,15 +110,37 @@ $attr=$result->fetch_all();
     ?>
 
         </tbody>
-        <script>
-        $(".btn btn-primary").click(function() {
-      var $row = $(this).closest("tr");    // Find the row
-      var $text = $row.find(".td").text(); // Find the text
+        <br>
+        <br>
 
-      // Let's test it out
-      alert($text);
-  });
-        </script>
+    <table class="table table-hover">
+    <thead class="thead-dark">
+      <h2> My Applications </h2>
+    <tr>
+   <th>Residence ID</th>
+   <th>Available Units</th>
+   <th>Monthly Rental</th>
+   <th>Status </th>
+   <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <?php
+
+  foreach($attr2 as $v)
+{
+    echo"<tr>";
+echo"<td>{$v[0]}</td>";
+echo"<td>{$v[1]}</td>";
+echo"<td>{$v[2]}</td>";
+echo"<td>{$v[3]}</td>";
+    echo"</tr>";
+}
+
+?>
+
+    </tbody>
+
         </table>
       </div>
 
