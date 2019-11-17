@@ -1,7 +1,7 @@
 <?php
 include_once('connection.php');
 session_start();
-$sql="select residence.residenceID ,numUnits,monthlyRental,requiredMonth,requiredYear,username,monthlyIncome from application,residence,applicant where status='waitlist' or status='new' group by applicationID";
+$sql="select residence.residenceID ,numUnits,monthlyRental,requiredMonth,requiredYear,username,monthlyIncome,applicationID,applicant.applicantID from application,residence,applicant where residence.residenceID=application.residenceID and applicant.applicantID=application.applicantID and status in ('new','wait list') group by residence.residenceID,numUnits,monthlyRental,requiredMonth,requiredYear,username,monthlyIncome,applicationID,applicantID;";
 $result=$con->query($sql);
 $attr=$result->fetch_all();
 ?>
@@ -87,6 +87,8 @@ $attr=$result->fetch_all();
        <th>Applicant Name </th>
 		   <th>Monthly Income</th>
        <th></th>
+	   <th></th>
+	   <th></th>
         </tr>
         </thead>
         <tbody>
@@ -96,14 +98,17 @@ $attr=$result->fetch_all();
     {
         echo"<tr>";
 
-    echo"<td>{$v[0]}</td>";
+		echo"<td>{$v[0]}</td>";
 		echo"<td>{$v[1]}</td>";
 		echo"<td>{$v[2]}</td>";
 		echo"<td>{$v[3]}</td>";
 		echo"<td>{$v[4]}</td>";
-    echo"<td>{$v[5]}</td>";
-    echo"<td>{$v[6]}</td>";
-		echo"<td><a href='allocateHousing.php?c={$v[0]}'  type='button' class='btn btn-primary' >Allocate</a></td>";
+		echo"<td>{$v[5]}</td>";
+		echo"<td>{$v[6]}</td>";
+		
+		echo"<td><a href='allocateHousing.php?c={$v[0]}&d={$v[7]}&e={$v[8]}'  type='button' class='btn btn-primary' >Allocate</a></td>";
+		echo"<td><a href='reject.php?d={$v[7]}' type='button' class='btn btn-primary' >Reject</a></td>";
+		echo"<td><a href='waitList.php?d={$v[7]}'  type='button' class='btn btn-primary' >Pause</a></td>";
         echo"</tr>";
     }
 

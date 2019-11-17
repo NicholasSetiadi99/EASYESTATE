@@ -1,5 +1,9 @@
 <?php
+session_start();
 $residenceID = $_GET["c"];
+$_SESSION["residenceID"] = $residenceID;
+$_SESSION["applicationID"] = $_GET["d"];
+$_SESSION["applicantID"] = $_GET["e"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,34 +80,36 @@ $residenceID = $_GET["c"];
             <div class="carousel-background"><img src="img/intro-carousel/1.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-					<form action="#" method="POST">
+					<form action="allocation.php" method="POST">
 					  <label style="color:white">Residence ID:  <?php echo $residenceID;?></label><br><br>
-
+					  <input type="hidden" name="residenceID">
 					  <label style="color:white">Units No. :</label><br>
 					  <input type="text" class="form-control" name="unitNo" id="unitNo" required><br>
 
-            <label style="color:white">From Date :</label><br>
-			<input id="datepicker" width="270" />
-			<script>
-				$('#datepicker').datepicker({
-					uiLibrary: 'bootstrap',
-					format: 'yyyy-mm-dd'
-				});
-			</script>
-			<br>
-			<label style="color:white">Duration :</label><br>
-			<br>
-			<div class="form-row">
-			<div class="form-group col-md-6 ">
-					<label style="color:white">
-					<input type="radio" class="form-control" name="optionsRadios" id="optionsRadios1" value="12" checked>12 Months</label><br>
-			</div>
-			<div class="form-group col-md-6 ">
-					<label style="color:white">
-					<input type="radio" class="form-control" name="optionsRadios" id="optionsRadios2" value="18"> 18 Months</label><br>
-			</div>
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+						<label style="color:white">From Date :</label><br>
+						<input id="datepicker" width="270" name="fromDate"/>
+						<script>
+							$('#datepicker').datepicker({
+								uiLibrary: 'bootstrap',
+								format: 'yyyy-mm-dd'
+							});
+						</script>
+						<br>
+						<label style="color:white">Duration :</label><br>
+						<br>
+						<div class="form-row">
+						<div class="form-group col-md-6 ">
+								<label style="color:white">
+								<input type="radio" class="form-control" name="duration" id="optionsRadios1" value="12" checked>12 Months</label><br>
+						</div>
+						<div class="form-group col-md-6 ">
+								<label style="color:white">
+								<input type="radio" class="form-control" name="duration" id="optionsRadios2" value="18"> 18 Months</label><br>
+						</div>
+						</div>	
+
+						
+						<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 
               </div>
@@ -201,10 +207,10 @@ $residenceID = $_GET["c"];
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+	
 
 
-
-
+ 
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
