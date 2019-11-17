@@ -1,2 +1,2 @@
-# Assignment 2 Prototype
+# Assignment 3 Prototype
 software engineering principles
