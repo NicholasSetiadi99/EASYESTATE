@@ -1,9 +1,9 @@
 <?php
-include_once('connection.php');
 session_start();
-$sql="select residence.residenceID ,numUnits,monthlyRental,requiredMonth,requiredYear,username,monthlyIncome,applicationID,applicant.applicantID from application,residence,applicant where residence.residenceID=application.residenceID and applicant.applicantID=application.applicantID and status in ('new','wait list') group by residence.residenceID,numUnits,monthlyRental,requiredMonth,requiredYear,username,monthlyIncome,applicationID,applicantID;";
-$result=$con->query($sql);
-$attr=$result->fetch_all();
+$residenceID = $_GET["c"];
+$_SESSION["residenceID"] = $residenceID;
+$_SESSION["applicationID"] = $_GET["d"];
+$_SESSION["applicantID"] = $_GET["e"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,93 +32,104 @@ $attr=$result->fetch_all();
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/styleApplicant.css" rel="stylesheet">
-
-
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+
 
   <!--==========================
     Header
   ============================-->
   <header id="header">
     <div class="container-fluid">
+
       <div id="logo" class="pull-left">
         <h1><a href="index.html" class="scrollto" style="font-size:27px;" >Easy Estate</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="
           " /></a>-->
       </div>
-	  <nav id="nav-menu-container">
+
+      <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="index.html">Go back</a></li>
+          <li class="menu-active"><a href="housingOfficerPage.php">Go back</a></li>
+
         </ul>
-      </nav>
-
-
+      </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
-</br>
-</br>
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <div class="intro-container">
+      <div id="introCarousel">
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active">
+            <div class="carousel-background"><img src="img/intro-carousel/1.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+					<form action="allocation.php" method="POST">
+					  <label style="color:white">Residence ID:  <?php echo $residenceID;?></label><br><br>
+					  <input type="hidden" name="residenceID">
+					  <label style="color:white">Units No. :</label><br>
+					  <input type="text" class="form-control" name="unitNo" id="unitNo" required><br>
+
+						<label style="color:white">From Date :</label><br>
+						<input id="datepicker" width="270" name="fromDate"/>
+						<script>
+							$('#datepicker').datepicker({
+								uiLibrary: 'bootstrap',
+								format: 'yyyy-mm-dd'
+							});
+						</script>
+						<br>
+						<label style="color:white">Duration :</label><br>
+						<br>
+						<div class="form-row">
+						<div class="form-group col-md-6 ">
+								<label style="color:white">
+								<input type="radio" class="form-control" name="duration" id="optionsRadios1" value="12" checked>12 Months</label><br>
+						</div>
+						<div class="form-group col-md-6 ">
+								<label style="color:white">
+								<input type="radio" class="form-control" name="duration" id="optionsRadios2" value="18"> 18 Months</label><br>
+						</div>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+              </div>
+            </div>
+          </div>
 
 
 
-
-
-
-    <!--==========================
-      Contact Section
-    ============================-->
-    <section id="contact" class="section-bg wow fadeInUp">
-      <div class="container">
-            </br>
-            </br>
-		<h2>Hi.<b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our website.</h2>
-        <h2> Applications </h2>
-        <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-		   <th>Residence ID</th>
-		   <th>Number of units</th>
-       <th>Monthly Rental</th>
-		   <th>Required Month</th>
-       <th>Required Year</th>
-       <th>Applicant Name </th>
-		   <th>Monthly Income</th>
-       <th></th>
-	   <th></th>
-	   <th></th>
-        </tr>
-        </thead>
-        <tbody>
-          <?php
-
-		  foreach($attr as $v)
-    {
-        echo"<tr>";
-
-		echo"<td>{$v[0]}</td>";
-		echo"<td>{$v[1]}</td>";
-		echo"<td>{$v[2]}</td>";
-		echo"<td>{$v[3]}</td>";
-		echo"<td>{$v[4]}</td>";
-		echo"<td>{$v[5]}</td>";
-		echo"<td>{$v[6]}</td>";
-
-		echo"<td><a href='allocateHousing.php?c={$v[0]}&d={$v[7]}&e={$v[8]}'  type='button' class='btn btn-primary' >Allocate</a></td>";
-		echo"<td><a href='reject.php?d={$v[7]}' type='button' class='btn btn-primary' >Reject</a></td>";
-		echo"<td><a href='waitList.php?d={$v[7]}'  type='button' class='btn btn-primary' >Pause</a></td>";
-        echo"</tr>";
-    }
-
-    ?>
-
-        </tbody>
-        </table>
       </div>
-    </section>
+    </div>
+  </section><!-- #intro -->
 
+  <main id="main">
+
+
+
+
+
+
+  </main>
 
   <!--==========================
     Footer
@@ -196,6 +207,11 @@ $attr=$result->fetch_all();
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+
+
+
+
+
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
 

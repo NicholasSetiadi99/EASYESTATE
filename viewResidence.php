@@ -103,7 +103,12 @@ $attr2=$result2->fetch_all();
 		echo"<td>{$v[2]}</td>";
 		echo"<td>{$v[3]}</td>";
 		echo"<td>{$v[4]}</td>";
+<<<<<<< HEAD
 		echo"<td> <a href='selectPeriod.php?c={$v[1]} & d={$v[2]} &e={$v[3]}&f={$v[4]}&g={$v[0]}'  type='button' class='btn btn-primary' >Apply</a> </td>";
+=======
+    echo"<td>{$v[5]}</td>";
+		echo"<td><a href='apply.php?c={$v[1]}'  type='button' class='btn btn-primary' >Apply</a></td>";
+>>>>>>> 750531cc610b6dcd3afb875adcda4e8e9ce0f54f
         echo"</tr>";
     }
 

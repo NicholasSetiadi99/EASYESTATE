@@ -19,12 +19,19 @@
 	values ('{$residenceID}','{$address}','{$numofunits}','{$unitsize}','{$monthlyrental}','{$staffID}') ";
 
 	if ($con->query($sql) === TRUE) {
-    echo "Residence added successfully";
+    echo "<script>
+    alert('Residence created Successfully.');
+    window.location.href='housingOfficerPage.php';
+    </script>";
 	}
 	else {
-    echo "Error: " . $sql . "<br>" . $con->error;
+    echo "<script>
+	alert('Failed to set up a residence. ');
+	window.location.href='housingOfficerPage.php';
+	</script>";
 	}
+	
 	$con->close();
-
+	
 
 ?>
