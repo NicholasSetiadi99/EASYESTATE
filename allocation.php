@@ -22,11 +22,17 @@
 	
 
 	if ($con->multi_query($sql) === TRUE) {
-		echo "Housing has been allocated successfully.";
-	} else {
-		echo "Error: " . $sql . "<br>" . $con->error;
+	echo "<script>
+    alert('Application has been allocated Successfully.');
+    window.location.href='reviewApplications.php';
+    </script>";
 	}
-	
+	else {
+    echo "<script>
+	alert('Failed to allocate. ');
+	window.location.href='reviewApplications.php';
+	</script>";
+	}
 	$con->close();
 
 

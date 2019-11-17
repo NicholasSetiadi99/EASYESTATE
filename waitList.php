@@ -11,10 +11,16 @@
 	$sql = "Update application set status ='Wait List' where applicationID='{$applicationID}';";
 
 	if ($con->query($sql) === TRUE) {
-    echo "This application has been put in the wait list.";
+       echo "<script>
+    alert('Application has been put in the wait list.');
+    window.location.href='reviewApplications.php';
+    </script>";
 	}
 	else {
-    echo "Error: " . $sql . "<br>" . $con->error;
+    echo "<script>
+	alert('Failed to put in the wait list. ');
+	window.location.href='reviewApplications.php';
+	</script>";
 	}
 	$con->close();
 

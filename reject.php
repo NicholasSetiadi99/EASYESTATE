@@ -11,11 +11,18 @@
 	$sql = "Update application set status ='Rejected' where applicationID='{$applicationID}';";
 
 	if ($con->query($sql) === TRUE) {
-    echo "This application has been rejected.";
+    echo "<script>
+    alert('Application has been rejected.');
+    window.location.href='reviewApplications.php';
+    </script>";
 	}
 	else {
-    echo "Error: " . $sql . "<br>" . $con->error;
+    echo "<script>
+	alert('Failed to reject. ');
+	window.location.href='reviewApplications.php';
+	</script>";
 	}
+	
 	$con->close();
 
 

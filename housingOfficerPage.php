@@ -7,6 +7,9 @@ $result = $con->query($query);
 $staffID = $result->fetch_array(MYSQLI_NUM);
 $_SESSION['staffID'] = $staffID[0];
 
+$sql="select residenceID ,address, numUnits, sizePerUnit ,monthlyRental, staffID from residence";
+$result1=$con->query($sql);
+$attr1=$result1->fetch_all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +83,7 @@ $_SESSION['staffID'] = $staffID[0];
             <div class="carousel-container">
               <div class="carousel-content">
           <form>
-          <h2 style="color:white">Welcome to Housing Officer Page</h2>
+          <h3 style="color:white">Welcome to Housing Officer Page</h3>
 
           <h5 style="color:white">What would you like to do, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>?</h5>
           <br>
@@ -90,22 +93,55 @@ $_SESSION['staffID'] = $staffID[0];
             <br>
             <br>
           </form>
+		  <div style="color:white">
+		  <h3> Available Residences </h3>
+					<table class="table table-hover">
+					<thead class="thead-dark">
+					<tr>
+				   <th>Residence ID</th>
+				   <th>Address</th>
+				   <th>Monthly Rental</th>
+				   <th>Unit Size</th>
+				   <th>Available Units</th>
+				   <th>Staff ID </th>
+					</tr>
+					</thead>
+					<tbody>
+					  <?php
+
+				  foreach($attr1 as $v)
+				{
+					echo"<tr>";
+
+					echo"<td>{$v[0]}</td>";
+				echo"<td>{$v[1]}</td>";
+				echo"<td>{$v[2]}</td>";
+				echo"<td>{$v[3]}</td>";
+				echo"<td>{$v[4]}</td>";
+				echo"<td>{$v[5]}</td>";
+					echo"</tr>";
+				}
+
+				?>
+
+					</tbody>
+					</table>
+					</div>
 
               </div>
+			  
             </div>
+			
           </div>
-
-
+			   
 
       </div>
     </div>
+	</div>
   </section><!-- #intro -->
 
   <main id="main">
-
-
-
-
+ 
 
 
   </main>
