@@ -1,7 +1,7 @@
 <?php
 include_once('connection.php');
 session_start();
-$sql="select residenceID ,address, numUnits, sizePerUnit ,monthlyRental, staffID from residence";
+$sql="select residenceID, address, numUnits, sizePerUnit ,monthlyRental from residence";
 $result=$con->query($sql);
 $attr=$result->fetch_all();
 ?>
@@ -74,17 +74,16 @@ $attr=$result->fetch_all();
       <div class="container">
             </br>
             </br>
-		<h2>Hi.<b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our website.</h2>
+		<h2>Hi.<b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> Welcome to our website.</h2>
         <h2> Available Residences </h2>
         <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-		   <th>Residence ID</th>
+       <th>Residence ID</th>
 		   <th>Address</th>
-       <th>Monthly Rental</th>
-		   <th>Unit Size</th>
        <th>Available Units</th>
-       <th>Staff ID </th>
+		   <th>Unit Size</th>
+       <th>Monthly Rental</th>
 		   <th></th>
         </tr>
         </thead>
@@ -94,22 +93,32 @@ $attr=$result->fetch_all();
 		  foreach($attr as $v)
     {
         echo"<tr>";
-
-        echo"<td>{$v[0]}</td>";
+    echo"<td>{$v[0]}</td>";
 		echo"<td>{$v[1]}</td>";
 		echo"<td>{$v[2]}</td>";
 		echo"<td>{$v[3]}</td>";
 		echo"<td>{$v[4]}</td>";
-    echo"<td>{$v[5]}</td>";
-		echo"<td><a href='apply.php?c={$v[1]}'  type='button' class='btn btn-primary' >Apply</a></td>";
+		echo"<td> <a href='selectPeriod.php?c={$v[1]} & d={$v[2]} &e={$v[3]}&f={$v[4]}&g={$v[0]}'  type='button' class='btn btn-primary' >Apply</a> </td>";
         echo"</tr>";
     }
 
     ?>
 
         </tbody>
+        <script>
+        $(".btn btn-primary").click(function() {
+      var $row = $(this).closest("tr");    // Find the row
+      var $text = $row.find(".td").text(); // Find the text
+
+      // Let's test it out
+      alert($text);
+  });
+        </script>
         </table>
       </div>
+
+
+
     </section>
 
 
