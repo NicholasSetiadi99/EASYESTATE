@@ -105,7 +105,7 @@ $attr=$result->fetch_all();
 		echo"<td>{$v[4]}</td>";
 		echo"<td>{$v[5]}</td>";
 		echo"<td>{$v[6]}</td>";
-		
+
 		echo"<td><a href='allocateHousing.php?c={$v[0]}&d={$v[7]}&e={$v[8]}'  type='button' class='btn btn-primary' >Allocate</a></td>";
 		echo"<td><a href='reject.php?d={$v[7]}' type='button' class='btn btn-primary' >Reject</a></td>";
 		echo"<td><a href='waitList.php?d={$v[7]}'  type='button' class='btn btn-primary' >Pause</a></td>";

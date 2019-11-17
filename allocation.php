@@ -9,7 +9,7 @@
 
 	$secord = strtotime($fromDate)+$duration*30*24*3600;
 	$endDate = date('Y-m-d',$secord);
-	
+
 	$con = new mysqli("localhost", "root","","mhs");
 
 	if(!$con)
@@ -19,7 +19,7 @@
 	$sql = "insert into allocation values('{$unitNo}','{$fromDate}','{$duration}','{$endDate}','{$applicationID}');";
 	$sql .= "Update application set status ='Approved' where applicationID='{$applicationID}';";
 	$sql .= "Update application set status='Rejected' where applicantID='{$applicantID}' and applicationID!='{$applicationID}';";
-	
+
 
 	if ($con->multi_query($sql) === TRUE) {
 	echo "<script>

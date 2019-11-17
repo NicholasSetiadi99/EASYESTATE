@@ -106,9 +106,9 @@ $_SESSION["applicantID"] = $_GET["e"];
 								<label style="color:white">
 								<input type="radio" class="form-control" name="duration" id="optionsRadios2" value="18"> 18 Months</label><br>
 						</div>
-						</div>	
+						</div>
 
-						
+
 						<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 
@@ -207,10 +207,10 @@ $_SESSION["applicantID"] = $_GET["e"];
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-	
 
 
- 
+
+
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
