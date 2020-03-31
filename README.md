@@ -1,2 +1,2 @@
-# Assignment 3 Prototype
+# Accomodation Finder Website Prototype
 software engineering principles
